@@ -1,0 +1,34 @@
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+
+<ul>
+  {{#each burger}}
+    {{#unless devoured}} 
+      {{> burger/burger-block devoured=true}}
+    {{/unless}}
+  {{/each}}
+</ul>
+
+<button type="submit" id="devour">Devour It</button>
+
+<ul>
+  {{#each burger}}
+    {{#if devoured}}
+      {{> burger/burger-block devoured=false}}
+    {{/if}}
+  {{/each}}
+</ul>
+
+<h2>Add a Burger</h2>
+<form class="create-form" action="/api/burgers" method="POST">
+
+  <div class="form-group">
+    <label for="burger">Burger Name:</label>
+    <input type="text" id="newburger" name="devoured">
+  </div>
+  <br>
+
+ 
+  <button type="submit">Submit</button>
+</form> 
+</center>
