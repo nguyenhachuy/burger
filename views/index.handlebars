@@ -1,60 +1,39 @@
-<h1>Burgers!</h1>
-
-
-<div>
-<h2>Available Burgers!</h2>
-
-<ul>
-  {{#each burger}}
-    {{#unless this.devoured}}
-      <li>
-      
-        {{this.id}}
-        {{this.burger_name}}
-      
-
-        <form action="/{{this.id}}" method="PUT">
-          <input type="hidden" name="devoured" value="true">
-          <button type="submit">Eat it!</button>
-        </form>
-
-      </li>
-    {{/unless}}
-  {{/each}}
-</ul>
-</div>
-
-<div>
-<h2>Burgers not available!</h2>
-
-<ul>
-  {{#each burger}}
-    {{#if this.devoured}}
-      <li>
-        {{this.burger_name}}
-
-      </li>
-    {{/if}}
-  {{/each}}
-</ul>
-</div>
-
-
-<div>
-<h2>Add a Burger</h2>
-
-{{!-- Form should send a post command to the server --}}
-
-<form class="create-form" action="/" method="POST">
-
-  <div class="form-group">
-    <label for="bn">Burger Name:</label>
-    <input type="text" id="bn" name="burger_name">
+<div class="container">
+  <div class="row text-center">
+      <h1>EAT DA BURGER</h1>
+  </div>
+  <div class="row">
+    <p>ENTER A BURGER YOU WOULD LIKE TO EAT</p>
+    <form action="/burgers/create" method="POST">
+      <input type="text" name="burger_name" class="form-control" value="" id="enter_text">
+      <button type="submit" class="btn btn-default" id="whatever">SUBMIT</button>
+    </form>
+    
   </div>
 
+  <div class="row">
+    <ul>
+      {{#each burger}}
+        {{#unless devoured}}
+        <li>{{id}}. {{burger_name}}</li>
+        <form action="/burgers/update?_method=PUT" method="POST">
+          <input type="hidden" name="burger_id" value={{id}}></input>
+          <br>
+          <button type="submit" class="btn btn-default">DEVOUR IT</button>
+        </form>
+        {{/unless}}
+      {{/each}}
+    </ul>
+  </div>
+  <div class="row">
+    <h1>Devoured Burgers</h1>
+    <ul>
+      {{#each burger}}
+        {{#if devoured}}
+          <li>{{id}}. {{burger_name}}</li>
+        {{/if}}
+      {{/each}}
+    </ul>
+  </div>
 
-
-  <button type="submit">Add</button>
-</form>
-<p>Type your favorite burger name above</p>
 </div>

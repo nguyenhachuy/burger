@@ -9,5 +9,5 @@ CREATE TABLE burgers (
 	primary key(id),
 	burger_name VARCHAR(50),
 	devoured BOOLEAN DEFAULT false,
-	date TIMESTAMP
+	date_created TIMESTAMP
 );
